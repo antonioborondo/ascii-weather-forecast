@@ -2,8 +2,14 @@
 
 [![CI](https://github.com/antonioborondo/ascii-weather-forecast/actions/workflows/ci.yml/badge.svg)](https://github.com/antonioborondo/ascii-weather-forecast/actions/workflows/ci.yml)
 
-```
-$ ./ascii-weather-forecast Madrid?2FnQ
+## Description
+
+C++ wrapper for [wttr.in](https://wttr.in), the console-oriented weather forecast service.
+
+### Example
+
+```bash
+$ ascii-weather-forecast Madrid?2FnQ
 
       \   /     Sunny
        .-.      16 °C
@@ -31,3 +37,14 @@ $ ./ascii-weather-forecast Madrid?2FnQ
 │               0.0 mm | 0%    │     ‘ ‘ ‘ ‘   0.3 mm | 100%  │
 └──────────────────────────────┴──────────────────────────────┘
 ```
+
+## Libraries
+
+- cURL: <https://curl.se>
+
+## Tools
+
+- wttr.in: <https://github.com/chubin/wttr.in>
+- CMake: <https://cmake.org>
+- vcpkg: <https://vcpkg.io>
+- GitHub Actions: <https://github.com/features/actions>
