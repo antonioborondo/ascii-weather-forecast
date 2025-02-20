@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22.1)
 
-project(ascii-weather-forecast VERSION 0.0.0)
+project(ascii-weather-forecast VERSION 1.0.0)
 
 find_package(CURL REQUIRED)
 
