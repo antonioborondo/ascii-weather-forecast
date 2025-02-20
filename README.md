@@ -1,5 +1,7 @@
 # ascii-weather-forecast
 
+[![CI](https://github.com/antonioborondo/ascii-weather-forecast/actions/workflows/ci.yml/badge.svg)](https://github.com/antonioborondo/ascii-weather-forecast/actions/workflows/ci.yml)
+
 ```
 $ ./ascii-weather-forecast Madrid?2FnQ
 
