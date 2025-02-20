@@ -7,3 +7,7 @@ find_package(CURL REQUIRED)
 add_executable(ascii-weather-forecast src/main.cc)
 
 target_link_libraries(ascii-weather-forecast PRIVATE CURL::libcurl)
+
+install(TARGETS ascii-weather-forecast DESTINATION bin)
+
+include(CPack)
