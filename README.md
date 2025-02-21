@@ -54,10 +54,10 @@ $ ascii-weather-forecast
 └──────────────────────────────┴──────────────────────────────┘
 ```
 
-Get all the options available with `--help`:
+Get all the options available with `-h`:
 
 ```shell
-$ ascii-weather-forecast --help
+$ ascii-weather-forecast -h
 
 Usage: ascii-weather-forecast [wttr.in options|OPTION [ARGUMENT]]
 
