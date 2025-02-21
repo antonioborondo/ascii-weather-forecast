@@ -3,6 +3,7 @@
 
 #include <boost/program_options.hpp>
 
+#include "version.h"
 #include "wttrin_wrapper.h"
 
 namespace po = boost::program_options;
@@ -36,7 +37,7 @@ int main(int argc, char** argv) {
         << "\n\n";
     std::cout << options_description << std::endl;
   } else if (variables_map.count("version")) {
-    std::cout << "ascii-weather-forecast version 1.0.0" << std::endl;
+    std::cout << "ascii-weather-forecast version " << kVersion << std::endl;
   } else {
     wttrin_wrapper::GetWeatherForecast(
         variables_map["wttrin-options"].as<std::string>());
