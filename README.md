@@ -40,6 +40,7 @@ $ ascii-weather-forecast Madrid?2FnQ
 
 ## Libraries
 
+- Boost: <https://boost.org>
 - cURL: <https://curl.se>
 
 ## Tools
