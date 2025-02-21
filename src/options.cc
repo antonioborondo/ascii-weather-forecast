@@ -1,9 +1,10 @@
 #include "options.h"
 
-#include <inicpp.h>
 #include <string.h>
 
 #include <filesystem>
+
+#include <inicpp.h>
 
 namespace {
 
