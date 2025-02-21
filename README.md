@@ -42,6 +42,7 @@ $ ascii-weather-forecast Madrid?2FnQ
 
 - Boost: <https://boost.org>
 - cURL: <https://curl.se>
+- inifile-cpp: <https://github.com/Rookfighter/inifile-cpp>
 
 ## Tools
 
