@@ -1,0 +1,3 @@
+[submodule "third_party/inifile-cpp"]
+  path = third_party/inifile-cpp
+  url = git@github.com:Rookfighter/inifile-cpp.git

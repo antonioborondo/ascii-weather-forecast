@@ -6,10 +6,12 @@
 
 C++ wrapper for [wttr.in](https://wttr.in), the console-oriented weather forecast service.
 
-### Example
+## Usage
 
-```bash
-$ ascii-weather-forecast Madrid?2FnQ
+Pass the wttr.in options as argument:
+
+```shell
+$ ascii-weather-forecast Madrid?1FnQ
 
       \   /     Sunny
        .-.      16 °C
@@ -26,22 +28,55 @@ $ ascii-weather-forecast Madrid?2FnQ
 │      `-’      10 km          │      `-’      10 km          │
 │     /   \     0.0 mm | 0%    │     /   \     0.0 mm | 0%    │
 └──────────────────────────────┴──────────────────────────────┘
+```
+
+Store the wttr.in options so you don't have to pass them every time:
+
+```shell
+$ ascii-weather-forecast -s Madrid?1FnQ
+
+$ ascii-weather-forecast
+
+      \   /     Sunny
+       .-.      16 °C
+    ― (   ) ―   ↗ 12 km/h
+       `-’      10 km
+      /   \     0.0 mm
                         ┌─────────────┐
-┌───────────────────────┤  Fri 21 Feb ├───────────────────────┐
+┌───────────────────────┤  Thu 20 Feb ├───────────────────────┐
 │             Noon      └──────┬──────┘      Night            │
 ├──────────────────────────────┼──────────────────────────────┤
-│    \  /       Partly Cloudy  │  _`/"".-.     Light rain sho…│
-│  _ /"".-.     +14(13) °C     │   ,\_(   ).   +12(9) °C      │
-│    \_(   ).   ↑ 12-14 km/h   │    /(___(__)  ↑ 21-36 km/h   │
-│    /(___(__)  10 km          │      ‘ ‘ ‘ ‘  10 km          │
-│               0.0 mm | 0%    │     ‘ ‘ ‘ ‘   0.3 mm | 100%  │
+│     \   /     Sunny          │     \   /     Clear          │
+│      .-.      +14(13) °C     │      .-.      12 °C          │
+│   ― (   ) ―   ↗ 9-10 km/h    │   ― (   ) ―   ↗ 5-10 km/h    │
+│      `-’      10 km          │      `-’      10 km          │
+│     /   \     0.0 mm | 0%    │     /   \     0.0 mm | 0%    │
 └──────────────────────────────┴──────────────────────────────┘
+```
+
+Get all the options available with `--help`:
+
+```shell
+$ ascii-weather-forecast --help
+
+Usage: ascii-weather-forecast [wttr.in options|OPTION [ARGUMENT]]
+
+Visit https://wttr.in/:help for a full list of wttr.in options.
+
+Options:
+  -w [ --wttrin-options ] arg     wttr.in options.
+  -s [ --set-wttrin-options ] arg Set wttr.in options.
+  -u [ --unset-wttrin-options ]   Unset wttr.in options.
+  -g [ --get-wttrin-options ]     Get wttr.in options.
+  -h [ --help ]                   Display help.
+  -v [ --version ]                Display version.
 ```
 
 ## Libraries
 
 - Boost: <https://boost.org>
 - cURL: <https://curl.se>
+- inifile-cpp: <https://github.com/Rookfighter/inifile-cpp>
 
 ## Tools
 
