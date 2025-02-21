@@ -38,7 +38,7 @@ jobs:
       - name: Build
         run: cmake --build build
       - name: Run
-        run: ./build/ascii-weather-forecast Madrid?2FnQ
+        run: ./build/ascii-weather-forecast Madrid?1FnQ
       - name: Pack
         working-directory: build
         run: cpack -G "DEB"
