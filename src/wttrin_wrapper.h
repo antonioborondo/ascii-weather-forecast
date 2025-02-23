@@ -5,7 +5,7 @@
 
 namespace wttrin_wrapper {
 
-void GetWeatherForecast(const std::string& wttrin_options);
+bool GetWeatherForecast(const std::string& wttrin_options);
 
 }
 

@@ -55,13 +55,17 @@ int main(int argc, char** argv) {
       if (options.empty()) {
         options = options::Get("wttrin", "options");
       }
-      wttrin_wrapper::GetWeatherForecast(options);
+      if (!wttrin_wrapper::GetWeatherForecast(options)) {
+        std::cerr
+            << "Error: cannot fetch weather forecast information from wttr.in"
+            << std::endl;
+      }
     }
   } catch (const boost::program_options::unknown_option& e) {
-    std::cerr << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << std::endl;
     return 1;
   } catch (const boost::program_options::invalid_command_line_syntax& e) {
-    std::cerr << "Error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << std::endl;
     return 1;
   }
 
