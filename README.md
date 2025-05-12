@@ -75,7 +75,7 @@ Options:
 ## Libraries
 
 - Boost: <https://boost.org>
-- cURL: <https://curl.se>
+- curl: <https://curl.se>
 - inifile-cpp: <https://github.com/Rookfighter/inifile-cpp>
 
 ## Tools
