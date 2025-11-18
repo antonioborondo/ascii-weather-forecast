@@ -1,5 +1,6 @@
 ---
 BasedOnStyle: Google
+# https://google.github.io/styleguide/cppguide.html#Names_and_Order_of_Includes
 IncludeBlocks: Regroup
 IncludeCategories:
 # Project's headers
