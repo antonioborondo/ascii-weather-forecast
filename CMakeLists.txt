@@ -1,11 +1,9 @@
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.25.1)
 
 project(ascii-weather-forecast VERSION 1.2.1)
 
-find_package(Boost COMPONENTS program_options REQUIRED)
-find_package(CURL REQUIRED)
-
-add_subdirectory(third_party/inifile-cpp)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 configure_file(
   src/version.h.in
@@ -23,6 +21,11 @@ target_include_directories(ascii-weather-forecast
   ${CMAKE_CURRENT_BINARY_DIR}/src
 )
 
+find_package(Boost COMPONENTS program_options REQUIRED)
+find_package(CURL REQUIRED)
+
+add_subdirectory(third_party/inifile-cpp)
+
 target_link_libraries(ascii-weather-forecast
   PRIVATE
   Boost::program_options
@@ -30,6 +33,8 @@ target_link_libraries(ascii-weather-forecast
   inicpp
 )
 
-install(TARGETS ascii-weather-forecast DESTINATION bin)
+include(GNUInstallDirs)
+
+install(TARGETS ascii-weather-forecast DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 include(CPack)
