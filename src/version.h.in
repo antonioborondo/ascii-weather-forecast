@@ -3,6 +3,8 @@
 
 #include <string_view>
 
-inline constexpr std::string_view kVersion{"@PROJECT_VERSION@"};
+using namespace std::literals;
+
+inline constexpr auto kVersion{"@PROJECT_VERSION@"sv};
 
 #endif
