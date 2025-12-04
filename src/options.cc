@@ -11,8 +11,8 @@ namespace {
 std::filesystem::path GetDataDirectory() {
   std::filesystem::path data_directory;
 
-  const auto xdg_data_home_directory{std::getenv("XDG_DATA_HOME")};
-  if (xdg_data_home_directory && strlen(xdg_data_home_directory) != 0) {
+  if (const auto xdg_data_home_directory{std::getenv("XDG_DATA_HOME")};
+      xdg_data_home_directory && strlen(xdg_data_home_directory) != 0) {
     data_directory = xdg_data_home_directory;
   } else {
     data_directory = std::getenv("HOME");
