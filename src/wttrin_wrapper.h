@@ -1,11 +1,11 @@
 #ifndef WTTRIN_WRAPPER_H_
 #define WTTRIN_WRAPPER_H_
 
-#include <string>
+#include <string_view>
 
 namespace wttrin_wrapper {
 
-bool GetWeatherForecast(const std::string& wttrin_options);
+bool GetWeatherForecast(std::string_view wttrin_options);
 
 }
 

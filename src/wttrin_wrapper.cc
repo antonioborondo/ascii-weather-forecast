@@ -1,10 +1,12 @@
 #include "wttrin_wrapper.h"
 
+#include <string_view>
+
 #include <curl/curl.h>
 
-bool wttrin_wrapper::GetWeatherForecast(const std::string& wttrin_options) {
+bool wttrin_wrapper::GetWeatherForecast(std::string_view wttrin_options) {
   char url[256];
-  sprintf(url, "https://wttr.in/%s", wttrin_options.c_str());
+  sprintf(url, "https://wttr.in/%s", wttrin_options.data());
 
   if (const auto curl_handle{curl_easy_init()}; curl_handle) {
     curl_easy_setopt(curl_handle, CURLOPT_URL, url);
