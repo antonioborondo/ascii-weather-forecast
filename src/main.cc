@@ -6,6 +6,7 @@
 #include "options.h"
 #include "version.h"
 #include "wttrin_wrapper.h"
+#include "wttrin_wrapper_exception.h"
 
 namespace po = boost::program_options;
 
@@ -55,10 +56,10 @@ int main(int argc, char** argv) {
       if (options.empty()) {
         options = options::Get("wttrin", "options");
       }
-      if (!wttrin_wrapper::GetWeatherForecast(options)) {
-        std::cerr
-            << "Error: cannot fetch weather forecast information from wttr.in"
-            << std::endl;
+      try {
+        wttrin_wrapper::GetWeatherForecast(options);
+      } catch (const WttrinWrapperException& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
       }
     }
   } catch (const boost::program_options::unknown_option& e) {

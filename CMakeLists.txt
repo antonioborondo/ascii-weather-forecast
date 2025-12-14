@@ -13,6 +13,7 @@ configure_file(
 add_executable(ascii-weather-forecast
   src/main.cc
   src/options.cc
+  src/wttrin_wrapper_exception.cc
   src/wttrin_wrapper.cc
 )
 
