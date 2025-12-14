@@ -57,7 +57,9 @@ int main(int argc, char** argv) {
         options = options::Get("wttrin", "options");
       }
       try {
-        wttrin_wrapper::GetWeatherForecast(options);
+        const auto weather_forecast{
+            wttrin_wrapper::GetWeatherForecast(options)};
+        std::cout << weather_forecast << std::endl;
       } catch (const WttrinWrapperException& e) {
         std::cerr << "Error: " << e.what() << std::endl;
       }
