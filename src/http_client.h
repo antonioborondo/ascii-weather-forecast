@@ -6,6 +6,8 @@
 
 class HttpClient {
  public:
+  virtual ~HttpClient() = default;
+
   virtual std::string GetUrl(std::string_view url) = 0;
 };
 

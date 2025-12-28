@@ -12,7 +12,7 @@ class CurlHttpClient : public HttpClient {
  public:
   CurlHttpClient();
 
-  ~CurlHttpClient() noexcept;
+  ~CurlHttpClient() noexcept override;
 
   std::string GetUrl(std::string_view url) override;
 
