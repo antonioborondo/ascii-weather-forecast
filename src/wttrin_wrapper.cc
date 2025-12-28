@@ -1,10 +1,11 @@
 #include "wttrin_wrapper.h"
 
+#include <memory>
 #include <string>
 #include <string_view>
 
-#include "http.h"
-#include "http_exception.h"
+#include "http_client.h"
+#include "http_client_exception.h"
 #include "wttrin_wrapper_exception.h"
 
 namespace {
@@ -17,18 +18,17 @@ std::string BuildUrl(std::string_view wttrin_options) {
 
 }  // namespace
 
-namespace wttrin_wrapper {
+WttrinWrapper::WttrinWrapper(std::unique_ptr<HttpClient> http_client)
+    : http_client_{std::move(http_client)} {}
 
-std::string GetWeatherForecast(std::string_view wttrin_options) {
+std::string WttrinWrapper::GetWeatherForecast(
+    std::string_view wttrin_options) const {
   const auto url{BuildUrl(wttrin_options)};
-
   try {
-    const auto weather_forecast{http::GetUrl(url)};
+    const auto weather_forecast{http_client_->GetUrl(url)};
     return weather_forecast;
-  } catch (const HttpException& e) {
+  } catch (const HttpClientException& e) {
     throw WttrinWrapperException(
         "failed to fetch weather forecast information from wttr.in");
   }
 }
-
-}  // namespace wttrin_wrapper

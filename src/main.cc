@@ -3,6 +3,7 @@
 
 #include <boost/program_options.hpp>
 
+#include "curl_http_client.h"
 #include "options.h"
 #include "version.h"
 #include "wttrin_wrapper.h"
@@ -57,8 +58,9 @@ int main(int argc, char** argv) {
         options = options::Get("wttrin", "options");
       }
       try {
-        const auto weather_forecast{
-            wttrin_wrapper::GetWeatherForecast(options)};
+        auto http_client{std::make_unique<CurlHttpClient>()};
+        const WttrinWrapper wttrin_wrapper{std::move(http_client)};
+        const auto weather_forecast{wttrin_wrapper.GetWeatherForecast(options)};
         std::cout << weather_forecast << std::endl;
       } catch (const WttrinWrapperException& e) {
         std::cerr << "Error: " << e.what() << std::endl;

@@ -11,8 +11,8 @@ configure_file(
 )
 
 add_executable(ascii-weather-forecast
-  src/http_exception.cc
-  src/http.cc
+  src/curl_http_client.cc
+  src/http_client_exception.cc
   src/main.cc
   src/options.cc
   src/wttrin_wrapper_exception.cc
