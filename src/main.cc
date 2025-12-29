@@ -3,7 +3,8 @@
 
 #include <boost/program_options.hpp>
 
-#include "curl_http_client_factory.h"
+#include "curl_http_client.h"
+#include "http_client_factory.h"
 #include "options.h"
 #include "version.h"
 #include "wttrin_wrapper.h"
@@ -58,7 +59,7 @@ int main(int argc, char** argv) {
         options = options::Get("wttrin", "options");
       }
       try {
-        auto http_client_factory{std::make_unique<CurlHttpClientFactory>()};
+        auto http_client_factory{CreateHttpClient<CurlHttpClient>};
         const WttrinWrapper wttrin_wrapper{std::move(http_client_factory)};
         const auto weather_forecast{wttrin_wrapper.GetWeatherForecast(options)};
         std::cout << weather_forecast << std::endl;

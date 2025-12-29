@@ -5,11 +5,9 @@
 
 #include "http_client.h"
 
-class HttpClientFactory {
- public:
-  virtual ~HttpClientFactory() noexcept = default;
-
-  virtual std::unique_ptr<HttpClient> CreateHttpClient() const = 0;
-};
+template <typename T>
+std::unique_ptr<HttpClient> CreateHttpClient() {
+  return std::make_unique<T>();
+}
 
 #endif

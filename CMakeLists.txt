@@ -28,7 +28,6 @@ target_link_libraries(ascii-weather-forecast
 )
 
 add_library(ascii-weather-forecast-common
-  src/curl_http_client_factory.cc
   src/curl_http_client.cc
   src/http_client_exception.cc
   src/options.cc
@@ -47,8 +46,8 @@ target_link_libraries(ascii-weather-forecast-common
 )
 
 add_executable(ascii-weather-forecast-test
-  test/curl_http_client_factory_test.cc
   test/curl_http_client_test.cc
+  test/wttrin_wrapper_test.cc
 )
 
 target_include_directories(ascii-weather-forecast-test

@@ -1,5 +1,6 @@
 #include "wttrin_wrapper.h"
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
@@ -19,14 +20,14 @@ std::string BuildUrl(std::string_view wttrin_options) {
 }  // namespace
 
 WttrinWrapper::WttrinWrapper(
-    std::unique_ptr<HttpClientFactory> http_client_factory) noexcept
+    std::function<std::unique_ptr<HttpClient>()> http_client_factory) noexcept
     : http_client_factory_{std::move(http_client_factory)} {}
 
 std::string WttrinWrapper::GetWeatherForecast(
     std::string_view wttrin_options) const {
   const auto url{BuildUrl(wttrin_options)};
   try {
-    auto http_client{http_client_factory_->CreateHttpClient()};
+    auto http_client{http_client_factory_()};
     const auto weather_forecast{http_client->GetUrl(url)};
     return weather_forecast;
   } catch (const HttpClientException& e) {
