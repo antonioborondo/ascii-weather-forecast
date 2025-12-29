@@ -11,6 +11,7 @@ configure_file(
 )
 
 add_executable(ascii-weather-forecast
+  src/curl_http_client_factory.cc
   src/curl_http_client.cc
   src/http_client_exception.cc
   src/main.cc

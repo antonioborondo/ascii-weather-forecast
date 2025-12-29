@@ -5,16 +5,17 @@
 #include <string>
 #include <string_view>
 
-#include "http_client.h"
+#include "http_client_factory.h"
 
 class WttrinWrapper {
  public:
-  WttrinWrapper(std::unique_ptr<HttpClient> http_client);
+  explicit WttrinWrapper(
+      std::unique_ptr<HttpClientFactory> http_client_factory) noexcept;
 
   std::string GetWeatherForecast(std::string_view wttrin_options) const;
 
  public:
-  std::unique_ptr<HttpClient> http_client_;
+  std::unique_ptr<HttpClientFactory> http_client_factory_;
 };
 
 #endif

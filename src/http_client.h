@@ -6,7 +6,7 @@
 
 class HttpClient {
  public:
-  virtual ~HttpClient() = default;
+  virtual ~HttpClient() noexcept = default;
 
   virtual std::string GetUrl(std::string_view url) = 0;
 };
