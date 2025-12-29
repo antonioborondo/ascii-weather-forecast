@@ -76,6 +76,7 @@ Options:
 
 - Boost: <https://boost.org>
 - curl: <https://curl.se>
+- GoogleTest: <https://github.com/google/googletest>
 - inifile-cpp: <https://github.com/Rookfighter/inifile-cpp>
 
 ## Tools
