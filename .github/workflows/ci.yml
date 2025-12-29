@@ -37,6 +37,9 @@ jobs:
           -B build
       - name: Build
         run: cmake --build build
+      - name: Test
+        working-directory: build
+        run: ctest --verbose
       - name: Run
         run: ./build/ascii-weather-forecast Madrid?1FnQ
       - name: Pack

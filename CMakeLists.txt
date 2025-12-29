@@ -11,13 +11,7 @@ configure_file(
 )
 
 add_executable(ascii-weather-forecast
-  src/curl_http_client_factory.cc
-  src/curl_http_client.cc
-  src/http_client_exception.cc
   src/main.cc
-  src/options.cc
-  src/wttrin_wrapper_exception.cc
-  src/wttrin_wrapper.cc
 )
 
 target_include_directories(ascii-weather-forecast
@@ -26,16 +20,54 @@ target_include_directories(ascii-weather-forecast
 )
 
 find_package(Boost COMPONENTS program_options REQUIRED)
+
+target_link_libraries(ascii-weather-forecast
+  PRIVATE
+  ascii-weather-forecast-common
+  Boost::program_options
+)
+
+add_library(ascii-weather-forecast-common
+  src/curl_http_client_factory.cc
+  src/curl_http_client.cc
+  src/http_client_exception.cc
+  src/options.cc
+  src/wttrin_wrapper_exception.cc
+  src/wttrin_wrapper.cc
+)
+
 find_package(CURL REQUIRED)
 
 add_subdirectory(third_party/inifile-cpp)
 
-target_link_libraries(ascii-weather-forecast
+target_link_libraries(ascii-weather-forecast-common
   PRIVATE
-  Boost::program_options
   CURL::libcurl
   inicpp
 )
+
+add_executable(ascii-weather-forecast-test
+  test/curl_http_client_test.cc
+)
+
+target_include_directories(ascii-weather-forecast-test
+  PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+find_package(GTest REQUIRED)
+
+target_link_libraries(ascii-weather-forecast-test
+  PRIVATE
+  ascii-weather-forecast-common
+  GTest::gmock
+  GTest::gtest
+  GTest::gtest_main
+)
+
+enable_testing()
+
+add_test(NAME ascii-weather-forecast-test COMMAND ascii-weather-forecast-test)
 
 include(GNUInstallDirs)
 
