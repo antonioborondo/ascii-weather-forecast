@@ -47,6 +47,7 @@ target_link_libraries(ascii-weather-forecast-common
 )
 
 add_executable(ascii-weather-forecast-test
+  test/curl_http_client_factory_test.cc
   test/curl_http_client_test.cc
 )
 
