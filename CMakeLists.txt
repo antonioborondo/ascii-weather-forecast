@@ -31,6 +31,7 @@ add_library(ascii-weather-forecast-common
   src/curl_http_client.cc
   src/http_client_exception.cc
   src/options.cc
+  src/wttrin_url_builder.cc
   src/wttrin_wrapper_exception.cc
   src/wttrin_wrapper.cc
 )
@@ -47,6 +48,7 @@ target_link_libraries(ascii-weather-forecast-common
 
 add_executable(ascii-weather-forecast-test
   test/curl_http_client_test.cc
+  test/wttrin_url_builder_test.cc
   test/wttrin_wrapper_test.cc
 )
 

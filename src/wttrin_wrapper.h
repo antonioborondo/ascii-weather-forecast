@@ -4,18 +4,20 @@
 #include <functional>
 #include <memory>
 #include <string>
-#include <string_view>
 
 #include "http_client.h"
+#include "url_builder.h"
 
 class WttrinWrapper {
  public:
-  explicit WttrinWrapper(std::function<std::unique_ptr<HttpClient>()>
+  explicit WttrinWrapper(std::unique_ptr<UrlBuilder> url_builder,
+                         std::function<std::unique_ptr<HttpClient>()>
                              http_client_factory) noexcept;
 
-  std::string GetWeatherForecast(std::string_view wttrin_options) const;
+  std::string GetWeatherForecast() const;
 
- public:
+ private:
+  std::unique_ptr<UrlBuilder> url_builder_;
   std::function<std::unique_ptr<HttpClient>()> http_client_factory_;
 };
 

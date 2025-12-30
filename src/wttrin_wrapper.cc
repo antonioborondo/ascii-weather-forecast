@@ -3,29 +3,20 @@
 #include <functional>
 #include <memory>
 #include <string>
-#include <string_view>
 
 #include "http_client.h"
 #include "http_client_exception.h"
+#include "url_builder.h"
 #include "wttrin_wrapper_exception.h"
 
-namespace {
-
-std::string BuildUrl(std::string_view wttrin_options) {
-  char url[256];
-  sprintf(url, "https://wttr.in/%s", wttrin_options.data());
-  return std::string{url};
-}
-
-}  // namespace
-
 WttrinWrapper::WttrinWrapper(
+    std::unique_ptr<UrlBuilder> url_builder,
     std::function<std::unique_ptr<HttpClient>()> http_client_factory) noexcept
-    : http_client_factory_{std::move(http_client_factory)} {}
+    : url_builder_{std::move(url_builder)},
+      http_client_factory_{std::move(http_client_factory)} {}
 
-std::string WttrinWrapper::GetWeatherForecast(
-    std::string_view wttrin_options) const {
-  const auto url{BuildUrl(wttrin_options)};
+std::string WttrinWrapper::GetWeatherForecast() const {
+  const auto url{url_builder_->GetUrl()};
   try {
     auto http_client{http_client_factory_()};
     const auto weather_forecast{http_client->GetUrl(url)};

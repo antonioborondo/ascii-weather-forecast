@@ -4,6 +4,7 @@
 
 #include "http_client_exception.h"
 #include "mock_http_client.h"
+#include "wttrin_url_builder.h"
 #include "wttrin_wrapper_exception.h"
 
 #include <gmock/gmock.h>
@@ -12,6 +13,9 @@
 using namespace testing;
 
 TEST(WttrinWrapperTest, GetWeatherForecast) {
+  const std::string wttrin_options{""};
+  auto url_builder{std::make_unique<WttrinUrlBuilder>(wttrin_options)};
+
   const auto weather_forecast{"Sunny"};
   auto mock_http_client_factory = [&weather_forecast]() {
     auto mock_http_client{std::make_unique<MockHttpClient>()};
@@ -20,13 +24,16 @@ TEST(WttrinWrapperTest, GetWeatherForecast) {
     return mock_http_client;
   };
 
-  WttrinWrapper wttrin_wrapper{mock_http_client_factory};
-  const std::string wttrin_options{""};
-  ASSERT_EQ(weather_forecast,
-            wttrin_wrapper.GetWeatherForecast(wttrin_options));
+  WttrinWrapper wttrin_wrapper{std::move(url_builder),
+                               mock_http_client_factory};
+
+  ASSERT_EQ(weather_forecast, wttrin_wrapper.GetWeatherForecast());
 }
 
 TEST(WttrinWrapperTest, GetWeatherForecastThrowsException) {
+  const std::string wttrin_options{""};
+  auto url_builder{std::make_unique<WttrinUrlBuilder>(wttrin_options)};
+
   auto mock_http_client_factory = []() {
     auto mock_http_client{std::make_unique<MockHttpClient>()};
     const std::string exception_message{""};
@@ -35,9 +42,8 @@ TEST(WttrinWrapperTest, GetWeatherForecastThrowsException) {
     return mock_http_client;
   };
 
-  WttrinWrapper wttrin_wrapper{mock_http_client_factory};
+  WttrinWrapper wttrin_wrapper{std::move(url_builder),
+                               mock_http_client_factory};
 
-  const std::string wttrin_options{""};
-  ASSERT_THROW(wttrin_wrapper.GetWeatherForecast(wttrin_options),
-               WttrinWrapperException);
+  ASSERT_THROW(wttrin_wrapper.GetWeatherForecast(), WttrinWrapperException);
 }
